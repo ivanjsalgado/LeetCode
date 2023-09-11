@@ -14,6 +14,9 @@
 // Input: (nums = [3, 3]), (target = 6);
 // Output: [0, 1];
 
+// Time Complexity: O(N)
+// Space Complexity: (N)
+
 const twoSum = (nums, target) => {
   let storeValues = {};
 
