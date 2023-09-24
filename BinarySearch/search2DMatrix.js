@@ -19,34 +19,27 @@ const searchMatrix = (matrix, target) => {
   let bottom = matrix.length - 1;
   let left = 0;
   let right = matrix[0].length - 1;
+  let middle;
 
   while (top < bottom) {
-    let middle = top + Math.floor((bottom - top) / 2);
-    if (matrix[middle][left] > target) {
-      bottom = middle - 1;
-    } else if (matrix[middle][right] < target) {
-      top = middle + 1;
-    } else if (
-      matrix[middle][left] <= target &&
-      target <= matrix[middle][right]
-    ) {
-      bottom = middle;
-    } else {
+    middle = top + Math.floor((bottom - top) / 2);
+    if (matrix[middle][left] > target) bottom = middle - 1;
+    else if (matrix[middle][right] < target) top = middle + 1;
+    else {
       top = middle;
+      break;
     }
   }
 
   while (left < right) {
-    let middle = left + Math.floor((right - left) / 2);
+    middle = left + Math.floor((right - left) / 2);
     if (matrix[top][middle] === target) return true;
-    if (matrix[top][middle] < target) {
-      left = middle + 1;
-    } else if (matrix[top][middle] > target) {
-      right = middle - 1;
+    if (matrix[top][middle] < target) left = middle + 1;
+    else {
+      right = middle;
     }
   }
-
-  return matrix[top][left] === target ? true : false;
+  return matrix[top][left] === target;
 };
 
 // console.log(
