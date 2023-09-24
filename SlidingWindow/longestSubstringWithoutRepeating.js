@@ -10,16 +10,18 @@
 // Output: 3
 
 const lengthOfLongestSubstring = (s) => {
-  let resultSet = new Set();
-  let result = 0;
+  if (s.length === 0) return 0;
+  let workingSet = new Set();
   let left = 0;
+  let result = 1;
+
   for (let i = 0; i < s.length; i++) {
-    while (resultSet.has(s[i])) {
-      resultSet.delete(s[left]);
+    while (workingSet.has(s[i])) {
+      workingSet.delete(s[left]);
       left++;
     }
-    resultSet.add(s[i]);
-    result = Math.max(result, resultSet.size);
+    workingSet.add(s[i]);
+    result = Math.max(workingSet.size, result);
   }
 
   return result;
